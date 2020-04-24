@@ -1,0 +1,32 @@
+spring:
+  profiles:
+    active: local
+
+---
+spring:
+  profiles: local
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/nple_mysql?useSSL=false&serverTimezone=Asia/Seoul
+    username: nple_user
+    password: Abcd1234!
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: false
+    show-sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+  devtools:
+    livereload:
+      enabled: true
+
+logging:
+  level:
+    org.hibernate: info
+    org.springframework.web: info
+
+
