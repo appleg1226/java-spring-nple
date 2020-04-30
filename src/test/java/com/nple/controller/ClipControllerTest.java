@@ -2,7 +2,6 @@ package com.nple.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nple.domain.Clip;
 import com.nple.persistence.clipRepositories.ImageClipRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,6 +81,80 @@ class ClipControllerTest {
                 .andExpect(status().isOk())
                 .andDo(print());
 
+    }
+
+    @Test
+    public void testUpdateClips() throws Exception {
+        String requestbody = "{\n" +
+                "  \"iclip\": [\n" +
+                "    {\n" +
+                "    \"contentInnerNum\": \"11\",\n" +
+                "    \"imageDir\":\"/root/image1\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "    \"contentInnerNum\": \"12\",\n" +
+                "    \"imageDir\":\"/root/image2\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "    \"contentInnerNum\": \"13\",\n" +
+                "    \"imageDir\":\"/root/image3\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "    \"contentInnerNum\": \"14\",\n" +
+                "    \"imageDir\":\"/root/image4\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "    \"contentInnerNum\": \"18\",\n" +
+                "    \"imageDir\":\"/root/image5\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "    \"contentInnerNum\": \"19\",\n" +
+                "    \"imageDir\":\"/root/image6\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "    \"contentInnerNum\": \"110\",\n" +
+                "    \"imageDir\":\"/root/image7\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "    \"contentInnerNum\": \"111\",\n" +
+                "    \"imageDir\":\"/root/image8\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "    \"contentInnerNum\": \"112\",\n" +
+                "    \"imageDir\":\"/root/image9\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "    \"contentInnerNum\": \"113\",\n" +
+                "    \"imageDir\":\"/root/image10\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "    \"contentInnerNum\": \"114\",\n" +
+                "    \"imageDir\":\"/root/image11\"\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"wclip\":[\n" +
+                "    {\n" +
+                "    \"contentInnerNum\": \"15\",\n" +
+                "    \"paragraph\":\"book content 01\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "    \"contentInnerNum\": \"16\",\n" +
+                "    \"paragraph\":\"book content 02\"\n" +
+                "    },\n" +
+                "    {\n" +
+                "    \"contentInnerNum\": \"17\",\n" +
+                "    \"paragraph\":\"book content 03\"\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+
+        this.mockMvc.perform(
+                MockMvcRequestBuilders
+                        .put("/book/clip/3")
+                        .content(requestbody)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andDo(print());
     }
 
 }

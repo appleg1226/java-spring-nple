@@ -112,4 +112,10 @@ class ClipRepositoryTest {
         });
     }
 
+    @Test
+    @Transactional
+    public void removeClip(){
+        imageRepo.deleteClipsofBook(2L);
+    }
+
 }

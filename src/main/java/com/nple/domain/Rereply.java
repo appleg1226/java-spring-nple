@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -34,5 +36,6 @@ public class Rereply {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rno")
     @JsonIgnore
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Reply reply;
 }

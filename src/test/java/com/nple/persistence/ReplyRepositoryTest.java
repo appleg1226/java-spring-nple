@@ -3,18 +3,18 @@ package com.nple.persistence;
 import com.nple.domain.Reply;
 import com.nple.domain.clips.ImageClip;
 import com.nple.domain.clips.WordClip;
+import com.nple.persistence.replyRepositories.ReplyRepository;
 import lombok.extern.java.Log;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Commit;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
 @SpringBootTest
 @Log
-@Commit
 class ReplyRepositoryTest {
 
     @Autowired
@@ -55,6 +55,28 @@ class ReplyRepositoryTest {
                 reply.setWordClip(wordClip);
                 replyRepo.save(reply);
             });
+        });
+    }
+
+    @Test
+    public void lombokBuilderPatternTest(){
+
+        Reply reply = Reply.builder()
+                .replyContent("aa2")
+                .replyer("bb2")
+                .build();
+
+        Reply reply2 = replyRepo.save(reply);
+
+        log.info("reply2"+ reply2);
+    }
+
+    @Test
+    @Transactional
+    public void getReplyTest(){
+        log.info("getReplyTest");
+        replyRepo.findByCnoOfWord(3L, 1L).forEach(a->{
+            log.info("reply: " + a);
         });
     }
 

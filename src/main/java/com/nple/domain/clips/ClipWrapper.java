@@ -1,7 +1,6 @@
 package com.nple.domain.clips;
 
 import lombok.AllArgsConstructor;
-import lombok.ToString;
 
 import java.util.Arrays;
 
