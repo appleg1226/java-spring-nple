@@ -6,7 +6,10 @@ import lombok.extern.java.Log;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.annotation.Commit;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
@@ -37,4 +40,13 @@ class RereplyRepositoryTest {
             });
         });
     }
+
+    @Test
+    @Transactional
+    public void testGetListofRereplies(){
+        // page가 1이면 2페이지다.
+        Pageable pageable = PageRequest.of(1, 3);
+        rereplyRepo.getRerepliesOfOneReply(1L, pageable).forEach(System.out::println);
+    }
+
 }
