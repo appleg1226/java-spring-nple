@@ -1,5 +1,8 @@
 
-## Nple Project Server part Development 
+## Nple Project Server API part Development 
+
+책 뷰어 시스템을 위한 server API Repo
+
 
 * 2020.04.24<br> 
 1. 데이터베이스 설계 및 테스트 코드 작성
